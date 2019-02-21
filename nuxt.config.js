@@ -1,9 +1,13 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const pkg = require('./package')
-
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/hello-nuxt/'
+  }
+} : {}
 module.exports = {
+  ...routerBase,
   mode: 'spa',
-
   /*
   ** Headers of the page
   */
@@ -15,7 +19,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/hello-nuxt/favicon.ico' },
       {
         rel: 'stylesheet',
         href:
@@ -65,7 +69,6 @@ module.exports = {
         import: ['~assets/style/variables.styl']
       }
     },
-
     /*
     ** You can extend webpack config here
     */
